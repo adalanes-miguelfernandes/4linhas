@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
-import { supabase } from '../lib/supabase'
-import { useAuth } from '../contexts/AuthContext'
+import { supabase } from '@/lib/supabase'
+import { useAuth } from '@/contexts/AuthContext'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
 export default function Profile() {
   const { session } = useAuth()
@@ -21,8 +22,17 @@ export default function Profile() {
   }, [session])
 
   return (
-    <main>
-      <h1>Olá, {name ?? '...'}</h1>
-    </main>
+    <div className="min-h-screen flex items-center justify-center bg-background p-4">
+      <Card className="w-full max-w-sm">
+        <CardHeader>
+          <CardTitle className="text-2xl">Perfil</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="text-muted-foreground">
+            Olá, <span className="text-foreground font-medium">{name ?? '...'}</span>
+          </p>
+        </CardContent>
+      </Card>
+    </div>
   )
 }
